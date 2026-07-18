@@ -30,11 +30,11 @@ pnpm test
 The official catalog uses prebuilt images published from this repository:
 
 ```text
-ghcr.io/kiln-site/ember:java11
-ghcr.io/kiln-site/ember:java17
-ghcr.io/kiln-site/ember:java21
-ghcr.io/kiln-site/ember:java25
-ghcr.io/kiln-site/ember:steamcmd
+ghcr.io/kiln-site/bricks-java:11
+ghcr.io/kiln-site/bricks-java:17
+ghcr.io/kiln-site/bricks-java:21
+ghcr.io/kiln-site/bricks-java:25
+ghcr.io/kiln-site/bricks-steamcmd:latest
 ```
 
 Recipes may use these images or any other OCI image. Prebuilt official Embers

@@ -45,7 +45,7 @@ jobs:
           file: embers/steamcmd/Dockerfile
           platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/kiln-site/ember:steamcmd
+          tags: ghcr.io/kiln-site/bricks-steamcmd:latest
           cache-from: type=gha,scope=ember-steamcmd
           cache-to: type=gha,mode=max,scope=ember-steamcmd
           provenance: mode=max

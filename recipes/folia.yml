@@ -22,7 +22,7 @@ variables:
     default: 3G
     rules: { pattern: "^[0-9]+[MG]$", maxLength: 12 }
 runtime:
-  image: ghcr.io/kiln-site/ember:java21
+  image: ghcr.io/kiln-site/bricks-java:21
   name: Java 21
   environment:
     KILN_IMPLEMENTATION: folia

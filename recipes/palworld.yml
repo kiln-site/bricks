@@ -29,7 +29,7 @@ variables:
     default: "Pal -publiclobby -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS -port=8211 -publicport=8211"
     rules: { maxLength: 2048 }
 runtime:
-  image: ghcr.io/kiln-site/ember:steamcmd
+  image: ghcr.io/kiln-site/bricks-steamcmd:latest
   name: SteamCMD
   user: "1000:1000"
   environment:
