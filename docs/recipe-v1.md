@@ -18,6 +18,12 @@ This prevents a misspelling from silently producing a less secure container.
 
 The normative schema is [`schema/recipe-v1.schema.json`](../schema/recipe-v1.schema.json).
 
+`runtime.resources.memory` is the exact Docker hard limit. The optional
+`memoryReservation` is the soft reservation and defaults to the hard limit.
+Runtime-specific overhead must fit inside that limit; Relay does not silently
+increase it. The official Java Ember uses a container-aware heap percentage so
+native JVM memory remains within the declared allocation.
+
 ## Templates
 
 The following string templates are supported:

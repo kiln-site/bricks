@@ -32,11 +32,16 @@ fi
 
 read -r -a extra_java_args <<< "${KILN_JAVA_ARGS:-}"
 read -r -a server_args <<< "${KILN_SERVER_ARGS:---nogui}"
+java_memory_args=(-Xms"${MIN_RAM:-512M}")
+if [[ -n "${MAX_RAM:-}" ]]; then
+  java_memory_args+=(-Xmx"${MAX_RAM}")
+else
+  java_memory_args+=("-XX:MaxRAMPercentage=${KILN_JAVA_MAX_RAM_PERCENTAGE:-75.0}")
+fi
 
 echo "[Kiln Ember] starting ${KILN_IMPLEMENTATION:-server} ${KILN_VERSION:-unknown} with Java $(java -version 2>&1 | head -1)"
 exec java \
-  -Xms"${MIN_RAM:-512M}" \
-  -Xmx"${MAX_RAM:-2G}" \
+  "${java_memory_args[@]}" \
   "${extra_java_args[@]}" \
   -jar "${KILN_ARTIFACT_FILE}" \
   "${server_args[@]}"

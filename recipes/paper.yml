@@ -16,8 +16,8 @@ variables:
     rules: { pattern: "^[0-9]+(?:\\.[0-9]+){1,2}$", maxLength: 32 }
   memory:
     type: string
-    label: Max heap
-    description: Maximum Java heap, such as 2G or 4096M.
+    label: Container memory
+    description: Total memory limit; Java uses up to 75% for its heap.
     required: true
     default: 2G
     rules: { pattern: "^[0-9]+[MG]$", maxLength: 12 }
@@ -30,8 +30,8 @@ runtime:
     KILN_ARTIFACT_URL: "https://mcjarfiles.com/api/get-jar/servers/paper/{{ variables.version }}"
     KILN_ARTIFACT_FILE: paper.jar
     KILN_SERVER_KIND: minecraft
+    KILN_JAVA_MAX_RAM_PERCENTAGE: "75.0"
     MIN_RAM: 512M
-    MAX_RAM: "{{ variables.memory }}"
   resources:
     memory: "{{ variables.memory }}"
     memoryReservation: "{{ variables.memory }}"

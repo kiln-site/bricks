@@ -17,7 +17,7 @@ variables:
   memory:
     type: string
     label: Memory
-    description: Container memory reservation; 16G or more is recommended.
+    description: Container memory limit; 16G or more is recommended.
     required: true
     default: 16G
     rules: { pattern: "^[0-9]+[MG]$", maxLength: 12 }
