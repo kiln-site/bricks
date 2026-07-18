@@ -1,0 +1,49 @@
+format: kiln.brick/v1
+metadata:
+  id: velocity
+  name: Velocity
+  description: Modern Minecraft proxy and hostname entrypoint for a Relay.
+  game: Minecraft
+  author: Kiln
+  tags: [minecraft, java, proxy]
+variables:
+  version:
+    type: string
+    label: Velocity version
+    description: Velocity release to install.
+    required: true
+    default: "3.5.1"
+    rules: { pattern: "^[0-9]+(?:\\.[0-9]+){1,3}$", maxLength: 32 }
+  memory:
+    type: string
+    label: Max heap
+    description: Maximum Java heap, such as 1G or 2048M.
+    required: true
+    default: 1G
+    rules: { pattern: "^[0-9]+[MG]$", maxLength: 12 }
+runtime:
+  image: ghcr.io/kiln-site/ember:java21
+  name: Java 21
+  environment:
+    KILN_IMPLEMENTATION: velocity
+    KILN_VERSION: "{{ variables.version }}"
+    KILN_ARTIFACT_URL: "https://mcjarfiles.com/api/get-jar/proxies/velocity/{{ variables.version }}"
+    KILN_ARTIFACT_FILE: velocity.jar
+    KILN_SERVER_KIND: proxy
+    KILN_SERVER_ARGS: ""
+    MIN_RAM: 512M
+    MAX_RAM: "{{ variables.memory }}"
+  resources:
+    memory: "{{ variables.memory }}"
+    memoryReservation: "{{ variables.memory }}"
+    pids: 512
+  storage: { mount: /server }
+network:
+  mode: minecraft-proxy
+  primaryPort: game
+  hostname: "{{ brick.id }}"
+  ports:
+    - { name: game, container: 25565, protocol: tcp }
+constraints:
+  architectures: [amd64, arm64]
+  singleton: true
