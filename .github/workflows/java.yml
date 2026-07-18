@@ -30,6 +30,7 @@ jobs:
       fail-fast: false
       matrix:
         version: [11, 17, 21, 25]
+        architecture: [amd64, arm64]
         include:
           - architecture: amd64
             runner: blacksmith-4vcpu-ubuntu-2404
